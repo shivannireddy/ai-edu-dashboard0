@@ -80,59 +80,44 @@ async function main() {
   console.log(`✓ Created ${faculty.length} faculty members`)
 
   // Create test assignments
-  console.log('Creating assignments...')
-  const assignments = await Promise.all([
-    prisma.assignment.create({
-      data: {
-        assignmentId: 'ASSIGN001',
-        facultyId: faculty[0].id,
-        title: 'Introduction to Programming - Essay',
-        description: 'Write an essay about the history of programming languages',
-        dueDate: new Date('2024-12-31'),
-        maxPoints: 100,
-        rubric: JSON.stringify({
-          criteria: [
-            { name: 'Content', points: 40 },
-            { name: 'Organization', points: 30 },
-            { name: 'Grammar', points: 30 },
-          ],
-        }),
-      }
-    }),
-    prisma.assignment.create({
-      data: {
-        assignmentId: 'ASSIGN002',
-        facultyId: faculty[0].id,
-        title: 'Data Structures Project',
-        description: 'Implement a binary search tree with documentation',
-        dueDate: new Date('2024-12-25'),
-        maxPoints: 150,
-        rubric: JSON.stringify({
-          criteria: [
-            { name: 'Implementation', points: 60 },
-            { name: 'Documentation', points: 40 },
-            { name: 'Testing', points: 50 },
-          ],
-        }),
-      }
-    }),
-  ])
-  console.log(`✓ Created ${assignments.length} assignments`)
+console.log('Creating assignments...')
 
-  // Create test submissions
-  console.log('Creating submissions...')
-  const submissions = await prisma.submission.create({
+const assignments = await Promise.all([
+  prisma.assignment.create({
     data: {
-      studentId: students[0].id,
-      assignmentId: assignments[0].id,
-      submittedAt: new Date(),
-      contentText: 'Programming languages have evolved significantly over the past decades. From early assembly languages to modern high-level languages like Python and JavaScript, the field has grown tremendously. This essay explores the key milestones in programming language development.',
-      aiDetectionScore: 25,
-      grade: 85,
-      feedback: 'Good work! Your essay shows understanding of the topic.',
+      assignmentId: 'ASSIGN001',
+      facultyId: faculty[0].facultyId,
+      title: 'Introduction to Programming Essay',
+      description: 'Write an essay about the history of programming languages',
+      type: 'Essay',
+      major: 'Computer Science',
+      year: 1,
+      dueDate: new Date('2024-12-31'),
+      aiAllowed: true,
+      aiLockedUntilDraft: false,
+      createdDate: new Date(),
     }
-  })
-  console.log(`✓ Created 1 submission`)
+  }),
+
+  prisma.assignment.create({
+    data: {
+      assignmentId: 'ASSIGN002',
+      facultyId: faculty[0].facultyId,
+      title: 'Data Structures Project',
+      description: 'Implement a binary search tree with documentation',
+      type: 'Project',
+      major: 'Computer Science',
+      year: 2,
+      dueDate: new Date('2024-12-25'),
+      aiAllowed: true,
+      aiLockedUntilDraft: false,
+      createdDate: new Date(),
+    }
+  }),
+])
+
+console.log(`✓ Created ${assignments.length} assignments`)
+
 
   console.log('\n✅ Database seeded successfully!')
   console.log('\n📝 Test credentials:')
