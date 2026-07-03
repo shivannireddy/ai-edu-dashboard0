@@ -26,10 +26,10 @@ pipeline {
         }
 
         stage('Docker Build') {
-            steps {
-                sh 'docker build -t ai-edu-dashboard .'
-            }
-        }
+    steps {
+        sh '/usr/local/bin/docker build -t ai-edu-dashboard .'
+    }
+}
     }
 
     post {
