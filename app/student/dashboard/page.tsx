@@ -99,7 +99,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid md:grid-cols-5 gap-6 mb-8">
           <Card>
             <CardHeader className="pb-2">
               <CardDescription>Active Assignments</CardDescription>
@@ -153,6 +153,19 @@ export default function StudentDashboard() {
               <p className="text-xs text-gray-500">This semester</p>
             </CardContent>
           </Card>
+          <Card>
+           <CardHeader className="pb-2">
+              <CardDescription>System Status</CardDescription>
+              <CardTitle className="text-2xl text-green-600">
+              🟢 Online
+           </CardTitle>
+           </CardHeader>
+           <CardContent>
+    <p className="text-xs text-gray-500">
+      Backend • Database • AI Service
+    </p>
+  </CardContent>
+</Card>
         </div>
 
         {/* Feature Preview Cards */}
